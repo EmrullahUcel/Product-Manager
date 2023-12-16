@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.mainDiv {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.productWrapper {
+  width: 33%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  left: 0;
+}
+.productCart {
+  background-color: lightgray;
+  width: auto;
+  padding: 10% 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.salesWrapper {
+  width: 34%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sales {
+  width: 100%;
+  height: 50%;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 40px 50px;
+}
+.listWrapper {
+  display: flex;
+  padding: 5px;
+}
+.listITem {
+  width: 80%;
+  padding: 0px 5px !important;
+  box-shadow: 3px 1px 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.listITem:hover {
+  cursor: pointer;
+  scale: 0.99;
+}
+.scanner{
+  width: 33%;
+  height: auto;
+}
