@@ -13,7 +13,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <RoutesComp />
     </BrowserRouter>
-    {/* <App/>
-    <Sign />   */}
   </Provider>
 );

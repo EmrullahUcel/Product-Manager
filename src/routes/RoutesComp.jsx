@@ -3,8 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Sign from "../pages/Sign";
 import PublicRoute from "./PublicRoute";
-import PrivateRoute from "./PriviteRoute";
-import Products from "../components/Products";
+import PriviteRoute from "./PriviteRoute";
 import App from "../App";
 
 const RoutesComp = () => {
@@ -13,9 +12,9 @@ const RoutesComp = () => {
       <Route path="/" element={<PublicRoute />}>
         <Route path="/" element={<Sign />} />
       </Route>
-      {/* <Route path="/product" element={<PrivateRoute />}>
-        <Route path="/product" element={<App />} />
-      </Route> */}
+      <Route path="/product" element={<PriviteRoute/>} >
+        <Route path="/product" element={<App/>} />
+      </Route>
     </Routes>
   );
 };

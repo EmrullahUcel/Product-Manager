@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProcut, selling } from "../redux/SalesSlice";
 import { v4 as uuidv4 } from "uuid";
@@ -10,12 +10,21 @@ import "react-toastify/dist/ReactToastify.css";
 const Sales = () => {
   const selectedProducts = useSelector((state) => state.sales.seletedProducts);
   const whoLogin = useSelector((state) => state.sales.whoLogin);
+  const isLogin = useSelector((state) => state.sales.isLogin);
+
   const dispatch = useDispatch();
-  const notify = () => toast("Wow so easy!");
+  const notify = () => toast(`Hoşgeldin ${whoLogin}`);
   const totalprice = selectedProducts.reduce(
     (total, product) => total + parseInt(product.price),
     0
   );
+
+    useEffect(()=>{
+      if(isLogin){
+        notify()
+      }
+    },[isLogin])
+
   return (
     <div className="salesWrapper">
       <ToastContainer />
@@ -36,6 +45,7 @@ const Sales = () => {
               </div>
             );
           })}
+
         <button onClick={() => dispatch(selling(totalprice))}>Satış </button>
         <span>{totalprice}₺</span>
       </div>

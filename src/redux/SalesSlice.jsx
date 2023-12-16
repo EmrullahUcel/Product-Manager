@@ -4,7 +4,7 @@ const initialState = {
   total: 0,
   seletedProducts: [],
   receipt: [],
-  isLogin: false,
+  isLogin: null,
   whoLogin: "",
 };
 

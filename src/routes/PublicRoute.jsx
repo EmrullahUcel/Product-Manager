@@ -1,9 +1,14 @@
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Navigate, Outlet } from 'react-router-dom'
+import Sign from '../pages/Sign'
 
 const PublicRoute = () => {
-  const login = useSelector((state) => state.sales.login);
-  return login ? <Navigate to="/product" /> : <Navigate to="/" />;
-};
+    const isLogin = useSelector(state => state.sales.isLogin)
 
-export default PublicRoute;
+  return (
+    isLogin ? <Navigate to="/product"/> : <Outlet/>
+  )
+}
+
+export default PublicRoute
