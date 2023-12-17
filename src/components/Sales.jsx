@@ -1,55 +1,90 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProcut, selling } from "../redux/SalesSlice";
+import { decrease, deleteProduct, increase, selling } from "../redux/SalesSlice";
 import { v4 as uuidv4 } from "uuid";
-import Receipt from "./Receipt";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Button, Card } from "antd";
+import { account } from "../db/appwrite";
+import "../modules/pages.css";
+import { setUser } from "../redux/auth";
 
 const Sales = () => {
-  const selectedProducts = useSelector((state) => state.sales.seletedProducts);
+  const selectedProducts = useSelector((state) => state.sales.selectedProducts);
   const whoLogin = useSelector((state) => state.sales.whoLogin);
-  const isLogin = useSelector((state) => state.sales.isLogin);
+  const user = useSelector((state) => state.auth.user);
+  const handleLogout = async () => {
+    await account.deleteSession("current");
+    dispatch(setUser(null));
+  };
 
   const dispatch = useDispatch();
   const notify = () => toast(`Hoşgeldin ${whoLogin}`);
   const totalprice = selectedProducts.reduce(
-    (total, product) => total + parseInt(product.price),
+    (total, product) => total + parseInt(product.price) * product.quantity,
     0
   );
-
-    useEffect(()=>{
-      if(isLogin){
-        notify()
-      }
-    },[isLogin])
+  useEffect(() => {
+    if (user) {
+      notify();
+    }
+  }, []);
 
   return (
     <div className="salesWrapper">
-      <ToastContainer />
-      <div>Şuanki kullanıcı : {whoLogin} </div>
+      
+      
+      <div className="user-logout-container">
+        <div>Şuanki kullanıcı : {whoLogin} </div>
+        <Button danger onClick={handleLogout}>
+          Çıkış yap
+        </Button>
+      </div>
       <div className="sales">
+      <span>{totalprice}₺</span>
         {selectedProducts &&
           selectedProducts.map((product) => {
             return (
-              <div
+              <Card
+                title={product.name}
+                bordered={false}
                 className="listWrapper"
-                onClick={() => dispatch(deleteProcut(product))}
                 key={uuidv4()}
-              >
-                <div className="listITem">
-                  <span>{product.name}</span>
-                  <span>{product.price}₺</span>
+                >
+                <div className="list-container">
+                  <div className="listITem">
+                    <Button
+                      onClick={() => dispatch(increase(product))}
+                      type="primary"
+                      shape="circle"
+                    >
+                      +
+                    </Button>
+                    <div>{product.quantity} adet</div>
+                    <Button onClick={() => dispatch(decrease(product))} type="primary" shape="circle" danger>
+                      -
+                    </Button>
+                  </div>
+                  <Button
+                    onClick={() => dispatch(deleteProduct(product))}
+                    type="primary"
+                    danger
+                  >
+                    Ürünü temizle
+                  </Button>
                 </div>
-              </div>
+              </Card>
             );
           })}
 
-        <button onClick={() => dispatch(selling(totalprice))}>Satış </button>
-        <span>{totalprice}₺</span>
+       
+       
       </div>
-      <Receipt />
+     
+      <Button className="saleButton" disabled={selectedProducts.length < 1} type="primary" danger onClick={() => dispatch(selling(totalprice))}>
+          Satış{" "}
+        </Button>
+        <ToastContainer />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { account } from '../db/appwrite'
 import { Button, Checkbox, Form, Input } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import './pages.css'
-
+import { setUser } from '../redux/auth'
 
 const Sign = () => {
   const [email, setEmail] = useState('')
@@ -21,29 +21,19 @@ const Sign = () => {
   }
 
   const handleLogin = async (e) => {
-
-
-    const promise = account.createEmailSession(email, password)
-    promise.then(
-      async function (response) {
-        try {
-          const data = await account.get()
-          console.log('success', response, response.providerUid)
-          dispatch(login(data))
-          dispatch(whoIsLogin(response.providerUid))
-        } catch (error) {
-          console.error(error)
-        }
-      },
-      function (error) {
-        console.error(error)
-      },
-    )
+    try {
+      await account.createEmailSession(email, password)
+      const data = await account.get()
+      dispatch(setUser(data))
+      dispatch(whoIsLogin(data.email ))
+    } catch (error) {
+      console.error(error)
+      dispatch(setUser(null))
+    }
   }
 
-
   return (
-    <div className='form-container'>
+    <div className="form-container">
       <div className="form-wrapper">
         <Form name="normal_login" className="login-form" onFinish={handleLogin}>
           <h2>Kullanıcı Girişi</h2>
@@ -54,11 +44,11 @@ const Sign = () => {
               type="email"
               value={email}
               onChange={handleEmailChange}
-              required    
+              required
             />
           </Form.Item>
           <Form.Item name="password">
-            <Input
+            <Input.Password
               placeholder="Parola"
               type="password"
               value={password}

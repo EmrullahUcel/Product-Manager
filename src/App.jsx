@@ -1,43 +1,40 @@
-import Products from "./components/Products";
-import "./App.css";
-import Sales from "./components/Sales";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "./redux/SalesSlice";
-import Scanner from "./components/Scanner";
-import { account } from "./db/appwrite";
-import { useNavigate } from "react-router-dom";
+// RoutesComp.jsx
+import React, { useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Sign from './modules/Sign'
+import PublicRoute from './routes/PublicRoute'
+import PriviteRoute from './routes/PriviteRoute'
+import Product from './modules/Product'
+import { setUser } from './redux/auth'
+import { account } from './db/appwrite'
+import { useDispatch } from 'react-redux'
 
+const App = () => {
+  const dispatch = useDispatch()
+  const checkLogin = async () => {
+    try {
+      const data = await account.get()
+      dispatch(setUser(data))
+    } catch (error) {
+      console.error(error)
+      dispatch(setUser(null))
+    }
+  }
 
-function App() {
-  const dispatch = useDispatch();
-  const handleLogout = async () => {
-    
-    const promise = account.deleteSession("current");
-    
-    promise.then(
-      async function (response) {
-        try{
-          dispatch(login(null))
-        }catch(error) {
-          console.log(error);
-        }
-      },
-      function (error) {
-        console.log(error); 
-      }
-    );
-  };
+  useEffect(() => {
+    checkLogin()
+  }, [])
 
   return (
-    <div className="mainDiv">
-      <div className="productWrapper">
-        <Products />
-      </div>
-      <Sales />
-      <button onClick={handleLogout}>Çıkış yap</button>
-      <Scanner/>
-    </div>
-  );
+    <Routes>
+      <Route path="/" element={<PublicRoute />}>
+        <Route path="/" element={<Sign />} />
+      </Route>
+      <Route path="/product" element={<PriviteRoute />}>
+        <Route path="/product" element={<Product />} />
+      </Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App

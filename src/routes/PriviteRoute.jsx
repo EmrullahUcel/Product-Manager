@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 
 const PriviteRoute = () => {
-    const isLogin = useSelector(state => state.sales.isLogin)
+  const user = useSelector((state) => state.auth.user)
 
-  return (
-    isLogin ? <Outlet/> : <Navigate to="/" />
-  )
+  return Boolean(user) ? <Outlet /> : <Navigate to="/" />
 }
 
 export default PriviteRoute

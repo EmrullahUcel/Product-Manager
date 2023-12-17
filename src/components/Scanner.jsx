@@ -1,12 +1,16 @@
 import React, { useRef, useState } from "react";
 import { BarcodeDetector } from "barcode-detector";
+import '../modules/pages.css'
+import Receipt from "./Receipt";
+
+
 const Scanner = () => {
   const video = useRef();
   const canvas = useRef();
   const [barcode, setBarcode] = useState(null);
   const openCam = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: { width: 240, height: 240 } })
+      .getUserMedia({ video: { width:300 , height: 300 } })
       .then((stream) => {
         video.current.srcObject = stream;
         video.current.play();
@@ -40,14 +44,15 @@ const Scanner = () => {
   };
 
   return (
-    <>
-      <button onClick={openCam}>aç</button>
+    <div className="scanner-container">
       <div className="scanner">
         <video ref={video} autoPlay muted hidden />
         <canvas ref={canvas} />
         <div>barkod : {barcode}</div>
       </div>
-    </>
+      <button onClick={openCam}>aç</button>
+      <Receipt />
+    </div>
   );
 };
 
