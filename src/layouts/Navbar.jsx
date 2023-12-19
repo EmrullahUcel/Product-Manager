@@ -1,9 +1,9 @@
 import React from "react";
 import './Navbar.css'
-import { account } from "../db/appwrite";
+import { account } from "/src/db/appwrite";
 import { useDispatch ,useSelector} from "react-redux";
 import { Button } from "antd";
-import { setUser } from "../redux/auth";
+import { setUser } from "/src/redux/auth";
 const Navbar = () => {
   const handleLogout = async () => {
     await account.deleteSession("current");

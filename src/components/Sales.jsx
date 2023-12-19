@@ -10,9 +10,8 @@ import { v4 as uuidv4 } from "uuid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Card } from "antd";
-import { account } from "../db/appwrite";
-import "../modules/pages.css";
-import { setUser } from "../redux/auth";
+import "/src/modules/pages.css";
+
 
 const Sales = () => {
   const selectedProducts = useSelector(

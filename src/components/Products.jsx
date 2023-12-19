@@ -1,7 +1,7 @@
 import React from "react";
 import { productsList } from "./productsList";
 import { useDispatch } from "react-redux";
-import { selectProduct } from "../redux/SalesSlice";
+import { selectProduct } from "/src/redux/SalesSlice";
 import { Card } from "antd";
 
 

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { whoIsLogin } from '../redux/auth'
-import { account } from '../db/appwrite'
-import { Button, Checkbox, Form, Input } from 'antd'
+import React, { useState } from 'react'
+import { useDispatch} from 'react-redux'
+import { whoIsLogin } from '/src/redux/auth'
+import { account } from '/src/db/appwrite'
+import { Button, Form, Input } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import './pages.css'
-import { setUser } from '../redux/auth'
+import { setUser } from '/src/redux/auth'
 
 const Sign = () => {
   const [email, setEmail] = useState('')

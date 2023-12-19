@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { BarcodeDetector } from "barcode-detector";
-import '../modules/pages.css'
+import '/src/modules/pages.css'
 import Receipt from "./Receipt";
 import { useDispatch, useSelector } from "react-redux";
-import { setBarcode } from "../redux/SalesSlice";
+import { setBarcode } from "/src/redux/SalesSlice";
 
 
 const Scanner = () => {

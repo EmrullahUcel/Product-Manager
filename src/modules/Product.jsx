@@ -1,7 +1,7 @@
-import Products from "../components/Products";
-import Sales from "../components/Sales";
-import Scanner from "../components/Scanner";
-import Navbar from "../layouts/Navbar";
+import Products from "/src/components/Products";
+import Sales from "/src/components/Sales";
+import Scanner from "/src/components/Scanner";
+import Navbar from "/src/layouts/Navbar";
 import "./product.css";
 
 const Product = () => {
