@@ -3,7 +3,8 @@ import { productsList } from "./productsList";
 import { useDispatch } from "react-redux";
 import { selectProduct } from "../redux/SalesSlice";
 import { Card } from "antd";
-const {Meta} = Card
+
+
 const Products = () => {
   const dispatch = useDispatch();
   return (

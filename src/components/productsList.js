@@ -37,11 +37,11 @@ export const productsList = [
   {
     id: uuidv4(),
     quantity:1,
-    name: "Biscuits",
+    name: "Bisküvi",
     price: "20",
     category: "food",
     stock: "120",
-    barcode: "",
+    barcode: "8690526069494",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeVVXg1Fj1hRirUDlLoL44jMY9dGA5FirVyw&usqp=CAU",
   },
@@ -130,4 +130,14 @@ export const productsList = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkIKzybxnPox4lm8R0y15rAGrTqI5kSbw3fg&usqp=CAU",
   },
+  {
+    id: uuidv4(),
+    quantity:1,
+    name: "Kraker",
+    price: "10",
+    category: "food",
+    stock: "80",
+    barcode: "8690504017301",
+    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNfcmE1OkIiJxfUVVoC79vpXrBXc2reb7nfg&usqp=CAU"
+  }
 ];

@@ -6,35 +6,40 @@
 .mainDiv {
   width: 100vw;
   height: 100vh;
-  display: flex;
   background-color: lightgray;
 }
-
-.productWrapper {
-  width: auto;
+.Container{
+  width: 100%;
   height: 90%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+}
+.productWrapper {
+  width: 33%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   left: 0;
   padding: 10px;
+  position: relative;
+  overflow-y: auto;
 }
 .productCart {
   display: flex;
   justify-content:flex-start;
   align-items: center;
   flex-direction: column;
-  width: 120px;
+  width: 100px;
+  height: auto  ;
 }
 .card-image{
   width: 100%;
-  height: 60%;
+  height: 50%;
   
 }
-.salesWrapper {
-  flex: 1;
+.salesWrapper { 
+  width: 33%;
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,14 +48,21 @@
 }
 .sales {
   width: 100%;
-  height: 80%;
+  height: 100%;
   color: black;
   display: flex;
-  flex-direction: column;
-  justify-content: start;
+  flex-wrap: wrap;
   padding: 40px 50px;
   gap: 10px;
   overflow-y: auto;
+  background-color: aquamarine;
+  position: relative;
+}
+.totalPrice{
+  position: absolute;
+  top: 0;
+  right: 15px;
+  background-color: red;
 }
 .saleButton{
   position: absolute;
@@ -58,10 +70,9 @@
   width: 50%;
 }
 .listWrapper {
-  display: flex;
+  max-width: 150px;
+  max-height: 195px;
   padding: 5px;
-  justify-content: space-between;
-  
 }
 .list-container{
   display: flex;

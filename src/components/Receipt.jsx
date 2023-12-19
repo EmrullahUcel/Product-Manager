@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 const Receipt = () => {
   const receipt = useSelector((state) => state.sales.receipt);
-
+  useEffect(()=>{
+    console.log(receipt);
+  },[receipt])
   return (
     <div>
       {receipt.map((receiptItem) => (

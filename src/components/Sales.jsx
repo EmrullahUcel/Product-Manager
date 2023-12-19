@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { decrease, deleteProduct, increase, selling } from "../redux/SalesSlice";
+import {
+  decrease,
+  deleteProduct,
+  increase,
+  selling,
+} from "../redux/SalesSlice";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,15 +15,12 @@ import "../modules/pages.css";
 import { setUser } from "../redux/auth";
 
 const Sales = () => {
-  const selectedProducts = useSelector((state) => state.sales.selectedProducts);
-  const whoLogin = useSelector((state) => state.sales.whoLogin);
+  const selectedProducts = useSelector(
+    (state) => state.sales.selectedProducts
+  );
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user);
-  const handleLogout = async () => {
-    await account.deleteSession("current");
-    dispatch(setUser(null));
-  };
-
-  const dispatch = useDispatch();
+  const whoLogin = useSelector((state) => state.auth.whoLogin);
   const notify = () => toast(`Hoşgeldin ${whoLogin}`);
   const totalprice = selectedProducts.reduce(
     (total, product) => total + parseInt(product.price) * product.quantity,
@@ -32,16 +34,8 @@ const Sales = () => {
 
   return (
     <div className="salesWrapper">
-      
-      
-      <div className="user-logout-container">
-        <div>Şuanki kullanıcı : {whoLogin} </div>
-        <Button danger onClick={handleLogout}>
-          Çıkış yap
-        </Button>
-      </div>
+        <div className="totalPrice">Toplam :{totalprice}₺</div>
       <div className="sales">
-      <span>{totalprice}₺</span>
         {selectedProducts &&
           selectedProducts.map((product) => {
             return (
@@ -50,7 +44,7 @@ const Sales = () => {
                 bordered={false}
                 className="listWrapper"
                 key={uuidv4()}
-                >
+              >
                 <div className="list-container">
                   <div className="listITem">
                     <Button
@@ -61,7 +55,12 @@ const Sales = () => {
                       +
                     </Button>
                     <div>{product.quantity} adet</div>
-                    <Button onClick={() => dispatch(decrease(product))} type="primary" shape="circle" danger>
+                    <Button
+                      onClick={() => dispatch(decrease(product))}
+                      type="primary"
+                      shape="circle"
+                      danger
+                    >
                       -
                     </Button>
                   </div>
@@ -76,15 +75,18 @@ const Sales = () => {
               </Card>
             );
           })}
-
-       
-       
       </div>
-     
-      <Button className="saleButton" disabled={selectedProducts.length < 1} type="primary" danger onClick={() => dispatch(selling(totalprice))}>
-          Satış{" "}
-        </Button>
-        <ToastContainer />
+
+      <Button
+        className="saleButton"
+        disabled={selectedProducts.length < 1}
+        type="primary"
+        danger
+        onClick={() => dispatch(selling(totalprice))}
+      >
+        Satış{" "}
+      </Button>
+      <ToastContainer />
     </div>
   );
 };

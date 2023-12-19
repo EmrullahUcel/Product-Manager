@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, whoIsLogin } from '../redux/SalesSlice'
+import { whoIsLogin } from '../redux/auth'
 import { account } from '../db/appwrite'
 import { Button, Checkbox, Form, Input } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
