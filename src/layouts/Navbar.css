@@ -1,6 +1,8 @@
 .navbar{
     width: 100%;
     height: 10%;
-    background-color: black;
+    background-color: steelblue;
     color: white;
+    border: outset 5px #90b4d1;
+    padding: 20px;
 }

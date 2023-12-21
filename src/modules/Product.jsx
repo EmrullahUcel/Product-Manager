@@ -9,9 +9,7 @@ const Product = () => {
     <div className="mainDiv">
       <Navbar />
       <div className="Container">
-        <div className="productWrapper">
-          <Products />
-        </div>
+        <Products />
         <Sales />
         <Scanner />
       </div>

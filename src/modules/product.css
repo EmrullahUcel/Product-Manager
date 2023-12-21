@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.ant-card{
+  height: 170px !important; 
+}
 .mainDiv {
   width: 100vw;
   height: 100vh;
@@ -13,16 +16,30 @@
   height: 90%;
   display: flex;
 }
+.product-container{
+  width:33%;
+  display: flex;
+  flex-direction: column  ;
+  border: inset 5px gray ;
+  padding: 20px;
+}
+.category-buttons{
+  display: flex; 
+  gap: 1%;
+  justify-content: space-evenly;
+}
 .productWrapper {
-  width: 33%;
-  height: 90%;
+  width: 100%;
+  height: max-content;
   display: flex;
   flex-wrap: wrap;
+  flex-grow: inherit;
   gap: 5px;
   left: 0;
   padding: 10px;
   position: relative;
   overflow-y: auto;
+  
 }
 .productCart {
   display: flex;
@@ -38,8 +55,7 @@
   
 }
 .salesWrapper { 
-  width: 33%;
-  height: 100%;
+  width: 50%; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +71,8 @@
   padding: 40px 50px;
   gap: 10px;
   overflow-y: auto;
-  background-color: aquamarine;
+  background-color: gray;
+  border: inset 5px black ;
   position: relative;
 }
 .totalPrice{
@@ -96,4 +113,13 @@
 canvas{
   width: 100%;
   height: 300px;
+}
+.receit-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 10px;
+}
+.receipt-cart{
+  background-color: darksalmon;
 }

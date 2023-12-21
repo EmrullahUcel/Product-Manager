@@ -7,6 +7,7 @@ const initialState = {
   product: productsList,
   receipt: [],
   selectedProducts: [],
+  totalReceipts: [],
 };
 
 export const salesSlice = createSlice({
@@ -16,6 +17,13 @@ export const salesSlice = createSlice({
     selling: (state, action) => {
       state.total = action.payload;
       state.receipt = [
+        {
+          products: state.selectedProducts,
+          total: state.total,
+        },
+      ];
+      state.totalReceipts = [
+        ...state.totalReceipts,
         {
           products: state.selectedProducts,
           total: state.total,
