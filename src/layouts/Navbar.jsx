@@ -11,6 +11,7 @@ const Navbar = () => {
     dispatch(setUser(null));
   };
   const user = useSelector((state) => state.auth.user);
+  console.log(user);
   const dispatch = useDispatch();
   return (
     <div className="navbar">
@@ -19,6 +20,7 @@ const Navbar = () => {
         Çıkış yap
       </Button>
       <NavLink to="/receipts">Son Fişler</NavLink>
+
       <NavLink to="/stocks">Stok durumu</NavLink>
     </div>
   );
