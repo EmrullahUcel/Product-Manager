@@ -8,7 +8,7 @@ const Register = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  // Appwrite istemci oluştur
+ 
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
     .setProject("65704f186517aeac4eda");
@@ -21,16 +21,14 @@ const Register = () => {
     try {
       const response = await account.create(email, password, ID.unique());
 
-      console.log(response); // Yanıtı konsola yazdır
-
-      // Kullanıcı başarıyla oluşturulduysa başarılı mesajını göster
+      console.log(response); 
       if (response) {
         setSuccess(true);
         setError(null);
       }
     } catch (error) {
-      // Hata durumunda hatayı ayarla
-      console.error(error); // Hata mesajını konsola yazdır
+      
+      console.error(error); 
       setError(error.message);
       setSuccess(false);
     }

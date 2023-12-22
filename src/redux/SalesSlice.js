@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productsList } from "../components/productsList";
 
 const initialState = {
   total: 0,
   barcode: "",
-  product: productsList,
-  receipt: [],
+  productList: [],
+  receipt: {
+    user:null,
+    receipts:[],
+    totalSell:null
+  },
   selectedProducts: [],
   totalReceipts: [],
 };
@@ -14,21 +17,23 @@ export const salesSlice = createSlice({
   name: "sales",
   initialState,
   reducers: {
+    getData : (state , action)=>{
+      state.productList = action.payload
+     },
+    setCheckSell:(state, action) =>{
+      state.totalReceipts = action.payload
+    },
     selling: (state, action) => {
-      state.total = action.payload;
-      state.receipt = [
+      const { total, user } = action.payload;
+      state.total = total;
+      
+
+      state.receipt = 
         {
-          products: state.selectedProducts,
+          user: user,
+          receipts: state.selectedProducts,
           total: state.total,
         },
-      ];
-      state.totalReceipts = [
-        ...state.totalReceipts,
-        {
-          products: state.selectedProducts,
-          total: state.total,
-        },
-      ];
       state.selectedProducts = [];
     },
     setBarcode: (state, action) => {
@@ -48,10 +53,11 @@ export const salesSlice = createSlice({
       }
     },
     selectProduct: (state, action) => {
+    
       const existingProduct = state.selectedProducts.find(
-        (product) => product.id === action.payload.id
+        (product) => product.$id === action.payload.$id
       );
-
+    
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
@@ -105,6 +111,7 @@ export const salesSlice = createSlice({
         state.selectedProducts.push({ ...action.payload, quantity: 1 });
       }
     },
+  
   },
 });
 
@@ -117,4 +124,6 @@ export const {
   decrease,
   deleteProduct,
   selectProduct,
+  getData,
+  setCheckSell
 } = salesSlice.actions;

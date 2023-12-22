@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   decrease,
@@ -7,11 +6,11 @@ import {
   selling,
 } from "../redux/SalesSlice";
 import { v4 as uuidv4 } from "uuid";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Card } from "antd";
 import "/src/modules/pages.css";
-
+import { databases } from "../db/appwrite";
+import { ID } from "appwrite";
 
 const Sales = () => {
   const selectedProducts = useSelector(
@@ -19,18 +18,46 @@ const Sales = () => {
   );
   const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user);
-  const whoLogin = useSelector((state) => state.auth.whoLogin);
-  const notify = () => toast(`Hoşgeldin ${whoLogin}`);
+  
   const totalprice = selectedProducts.reduce(
     (total, product) => total + parseInt(product.price) * product.quantity,
     0
   );
-  useEffect(() => {
-    if (user) {
-      notify();
-    }
-  }, []);
+  const handleSale = async () => {
 
+    try {
+      for (const product of selectedProducts) {
+        const newStock = product.stock - product.quantity;
+  
+        await databases.updateDocument(
+          "658166408e44e25319c9",
+          '6581664ba658775f0067',
+          product.$id,
+          {
+            stock: newStock
+          }
+        );
+      }
+  
+      await databases.createDocument(
+        "658166408e44e25319c9",
+        "6585d95136c31a10eba1",
+        ID.unique(),
+        {
+          user:user.name,
+          total: totalprice,
+          products: selectedProducts,
+        }
+      );
+  
+      dispatch(selling({ total: totalprice, user: user.name }));
+      console.log('Stoklar güncellendi ve satış işlemi tamamlandı.');
+    } catch (error) {
+      console.error('Stok güncelleme veya satış işlemi hatası:', error);
+    }
+  };
+  
+  
   return (
     <div className="salesWrapper">
         <div className="totalPrice">Toplam :{totalprice}₺</div>
@@ -81,13 +108,12 @@ const Sales = () => {
         disabled={selectedProducts.length < 1}
         type="primary"
         danger
-        onClick={() => dispatch(selling(totalprice))}
+        onClick={handleSale}
       >
         Satış{" "}
       </Button>
-      <ToastContainer />
     </div>
   );
 };
-
+  
 export default Sales;

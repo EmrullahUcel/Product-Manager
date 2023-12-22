@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectProduct } from "/src/redux/SalesSlice";
 import { Button, Card } from "antd";
-import { productsList } from "./productsList"; 
 import '../modules/product.css'
 
 const Products = () => {
-  const [filteredProducts, setFilteredProducts] = useState(productsList);
+  const productList = useSelector(state => state.sales.productList)
+ 
+  const [filteredProducts, setFilteredProducts] = useState(productList);
   const dispatch = useDispatch();
-
+  
   const filterProductsByCategory = (category) => {
-    const filtered = productsList.filter((product) => product.category === category);
+    const filtered = productList.filter((product) => product.category === category);
     setFilteredProducts(filtered);
   };
 
   const showAllProducts = () => {
-    setFilteredProducts(productsList);
+    setFilteredProducts(productList);
   };
+  
 
   return (
     <div className="product-container">
@@ -35,7 +37,7 @@ const Products = () => {
             className="productCart"
             hoverable
           >
-            <img className="card-image" src={product.image} alt={product.name} />
+            <img className="card-image" src={product.imageUrl} alt={product.name} />
             <hr />
             <p>{product.name}</p>
             <hr />

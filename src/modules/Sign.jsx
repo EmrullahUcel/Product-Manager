@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch} from 'react-redux'
-import { whoIsLogin } from '/src/redux/auth'
 import { account } from '/src/db/appwrite'
 import { Button, Form, Input } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
@@ -25,7 +24,7 @@ const Sign = () => {
       await account.createEmailSession(email, password)
       const data = await account.get()
       dispatch(setUser(data))
-      dispatch(whoIsLogin(data.email ))
+      
     } catch (error) {
       console.error(error)
       dispatch(setUser(null))

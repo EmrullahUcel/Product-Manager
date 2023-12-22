@@ -10,15 +10,16 @@ const Navbar = () => {
     await account.deleteSession("current");
     dispatch(setUser(null));
   };
-  const whoLogin = useSelector((state) => state.auth.whoLogin);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   return (
     <div className="navbar">
-      <div>Şuanki kullanıcı : {whoLogin} </div>
+      <div>Şuanki kullanıcı : {user.name} </div>
       <Button danger onClick={handleLogout}>
         Çıkış yap
       </Button>
       <NavLink to="/receipts">Son Fişler</NavLink>
+      <NavLink to="/stocks">Stok durumu</NavLink>
     </div>
   );
 };
