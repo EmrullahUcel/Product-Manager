@@ -6,14 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 
 const TotalReceipts = () => {
   const totalReceipts = useSelector((state) => state.sales.totalReceipts);
-
+  console.log(totalReceipts);
   return (
     <div className="receit-container">
       {totalReceipts.map((receipt) => (
         <Card hoverable className="productCart receipt-cart" key={uuidv4()}>
           {receipt.products.map((product) => (
             <div key={uuidv4()}>
-              <p>{product.$createdAt} </p>
               <p>{product.name}</p>
             </div>
           ))}

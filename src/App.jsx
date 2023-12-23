@@ -11,6 +11,7 @@
   import { databases } from "./db/appwrite";
   import { getData, setCheckSell } from "./redux/SalesSlice";
 import Stocks from "./modules/Stocks";
+import Summary from "./modules/Summary";
 
   const App = () => {
     const dispatch = useDispatch();
@@ -66,6 +67,9 @@ import Stocks from "./modules/Stocks";
         </Route>
         <Route path="/stocks" element={<PriviteRoute />}>
           <Route path="/stocks" element={<Stocks />} />
+        </Route>
+        <Route path="/summary" element={<PriviteRoute />}>
+          <Route path="/summary" element={<Summary />} />
         </Route>
       </Routes>
     );

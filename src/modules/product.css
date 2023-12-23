@@ -122,4 +122,6 @@ canvas{
 }
 .receipt-cart{
   background-color: darksalmon;
+  width: 200px;
+  height: auto !important;
 }
