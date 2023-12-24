@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { BarcodeDetector } from "barcode-detector";
-import '/src/modules/pages.css'
+import '/src/css/scanner.css'
 import Receipt from "./Receipt";
 import { useDispatch, useSelector } from "react-redux";
 import { setBarcode } from "/src/redux/SalesSlice";

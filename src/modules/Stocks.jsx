@@ -1,12 +1,10 @@
 import React from "react";
 import { Table } from "antd";
 import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import { NavLink } from "react-router-dom";
+import Navbar from "../layouts/Navbar";
 
 const Stocks = () => {
   const productList = useSelector((state) => state.sales.productList);
-
   const columns = [
     {
       title: "İsim",
@@ -24,19 +22,17 @@ const Stocks = () => {
       key: "stock",
     },
   ];
+  const dataSource = productList.map((item) => ({
+    ...item,
+    key: item.$id,
+  }));
 
   return (
-    <div className="stock-container">
-      <div className="stock-navigate">
-        <NavLink to="/product">Satış Ekranına Dön</NavLink>
+    <Navbar>
+      <div className="stock-container">
+        <Table dataSource={dataSource} columns={columns} size="middle" />
       </div>
-      <Table
-        className=""
-        key={uuidv4()}
-        dataSource={productList}
-        columns={columns}
-      />
-    </div>
+    </Navbar>
   );
 };
 

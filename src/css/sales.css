@@ -1,0 +1,55 @@
+.salesWrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.sales {
+  width: 100%;
+  height: 100%;
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 50px;
+  gap: 10px;
+  overflow-y: auto;
+  background-color: gray;
+  border: inset 5px black;
+  position: relative;
+}
+.totalPrice {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  background-color: red;
+}
+.saleButton {
+  position: absolute;
+  bottom: 20px;
+  width: 50%;
+}
+.listWrapper {
+  max-width: 150px;
+  max-height: 195px;
+  padding: 5px;
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.listITem {
+  width: 100px;
+  height: 50px;
+  box-shadow: 3px 1px 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listITem:hover {
+  cursor: pointer;
+  scale: 0.99;
+}

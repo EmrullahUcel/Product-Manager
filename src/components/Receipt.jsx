@@ -8,7 +8,7 @@ const Receipt = () => {
     <div>
       {receipt && (
         <div>
-          <h3>Son satılan ürünler:</h3>
+          <h3 style={{ color: "black" }}>Son satılan ürünler:</h3>
           <ul>
             {receipt.receipts.map((product, productIndex) => (
               <li key={productIndex}>

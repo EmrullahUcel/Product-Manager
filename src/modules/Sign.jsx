@@ -1,40 +1,45 @@
-import React, { useState } from 'react'
-import { useDispatch} from 'react-redux'
-import { account } from '/src/db/appwrite'
-import { Button, Form, Input } from 'antd'
-import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import './pages.css'
-import { setUser } from '/src/redux/auth'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { account } from "/src/db/appwrite";
+import { Button, Form, Input } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import "/src/css/sign.css";
+import { setUser } from "/src/redux/auth";
 
 const Sign = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const handleLogin = async (e) => {
     try {
-      await account.createEmailSession(email, password)
-      const data = await account.get()
-      dispatch(setUser(data))
-      
+      await account.createEmailSession(email, password);
+      const data = await account.get();
+      dispatch(setUser(data));
     } catch (error) {
-      console.error(error)
-      dispatch(setUser(null))
+      console.error(error);
+      dispatch(setUser(null));
     }
-  }
+  };
 
   return (
     <div className="form-container">
+      <h1>PRODUCT MANAGER </h1>
       <div className="form-wrapper">
-        <Form name="normal_login" className="login-form" onFinish={handleLogin}>
+        <Form
+          name="normal_login"
+          className="login-form"
+          size="normal"
+          onFinish={handleLogin}
+        >
           <h2>Kullanıcı Girişi</h2>
           <Form.Item name="email">
             <Input
@@ -66,7 +71,7 @@ const Sign = () => {
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sign
+export default Sign;

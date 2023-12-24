@@ -8,7 +8,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Card } from "antd";
-import "/src/modules/pages.css";
+import "/src/css/sales.css";
 import { databases } from "../db/appwrite";
 import { ID } from "appwrite";
 

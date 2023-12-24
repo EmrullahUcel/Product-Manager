@@ -12,6 +12,7 @@
   import { getData, setCheckSell } from "./redux/SalesSlice";
 import Stocks from "./modules/Stocks";
 import Summary from "./modules/Summary";
+import NewPRoduct from "./components/NewPRoduct";
 
   const App = () => {
     const dispatch = useDispatch();
@@ -70,6 +71,9 @@ import Summary from "./modules/Summary";
         </Route>
         <Route path="/summary" element={<PriviteRoute />}>
           <Route path="/summary" element={<Summary />} />
+        </Route>
+        <Route path="/addproduct" element={<PriviteRoute />}>
+          <Route path="/addproduct" element={<NewPRoduct />} />
         </Route>
       </Routes>
     );

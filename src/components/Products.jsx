@@ -2,7 +2,7 @@ import React, {  useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectProduct } from "/src/redux/SalesSlice";
 import { Button, Card } from "antd";
-import '../modules/product.css'
+import '/src/css/product.css'
 
 const Products = () => {
   const productList = useSelector(state => state.sales.productList)

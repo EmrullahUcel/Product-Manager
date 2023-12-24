@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Table } from "antd";
+import Navbar from "../layouts/Navbar";
 
 const Summary = () => {
   const totalReceipts = useSelector((state) => state.sales.totalReceipts);
@@ -44,13 +45,12 @@ const Summary = () => {
   const totalSales = totalReceipts.reduce((total, receipt) => total + receipt.total, 0);
 
   return (
-    <div>
-      <NavLink to="/product">Satış ekranına dön</NavLink>
+    <Navbar>
       <Table columns={columns} dataSource={dataSource} />
       <div>
         <h3>Toplam Satış Tutarı: {totalSales}</h3>
       </div>
-    </div>
+    </Navbar>
   );
 };
 
