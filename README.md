@@ -6,8 +6,8 @@
 
 This project is a market application developed using React.js. The application includes functionalities for sales transactions, cashier sales records, cash register summaries, stock information of products, and the ability to add new products. Sales transactions can be conducted by scanning product barcodes using the camera feature. User authentication, product management, and sales transactions are handled through Appwrite.
 
-![](https://github.com/EmrullahUcel/Product-Manager/blob/main/src/assets/productManagerLoginSc)
-![](https://github.com/EmrullahUcel/Product-Manager/blob/main/src/assets/productManagerMainSc)
+![](/src/assets/productManagerLoginSc.jpeg)
+![](/src/assets/productManagerMainSc.jpeg)
 
 ## Features
 
@@ -20,7 +20,7 @@ This project is a market application developed using React.js. The application i
 - User Authentication: Manage user logins and access control.
 - Appwrite Integration: Utilize Appwrite for managing user data, product controls, and sales transactions.
 
-# #Getting Started
+## Getting Started
 
 To get started with the project, follow these steps:
 
