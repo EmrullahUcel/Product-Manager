@@ -1,21 +1,19 @@
 import React, { useRef } from "react";
 import { BarcodeDetector } from "barcode-detector";
-import '/src/css/scanner.css'
+import "/src/css/scanner.css";
 import Receipt from "./Receipt";
 import { useDispatch, useSelector } from "react-redux";
 import { setBarcode } from "/src/redux/SalesSlice";
 
-
 const Scanner = () => {
   const video = useRef();
   const canvas = useRef();
-  const barcode = useSelector(state => state.sales.barcode)
-  const dispatch = useDispatch()
-
+  const barcode = useSelector((state) => state.sales.barcode);
+  const dispatch = useDispatch();
 
   const openCam = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: { width:300 , height: 300 } })
+      .getUserMedia({ video: { width: 300, height: 300 } })
       .then((stream) => {
         video.current.srcObject = stream;
         video.current.play();
@@ -38,6 +36,7 @@ const Scanner = () => {
           barcode
             .detect(canvas.current)
             .then(([data]) => {
+              console.log(data);
               if (data) {
                 dispatch(setBarcode(data.rawValue));
               }

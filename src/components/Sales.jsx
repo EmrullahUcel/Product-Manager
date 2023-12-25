@@ -7,7 +7,7 @@ import {
 } from "../redux/SalesSlice";
 import { v4 as uuidv4 } from "uuid";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Card } from "antd";
+import { Button, Card, message } from "antd";
 import "/src/css/sales.css";
 import { databases } from "../db/appwrite";
 import { ID } from "appwrite";
@@ -16,6 +16,7 @@ const Sales = () => {
   const selectedProducts = useSelector(
     (state) => state.sales.selectedProducts
   );
+  console.log(selectedProducts);
   const dispatch = useDispatch()
   const user = useSelector((state) => state.auth.user);
   
@@ -51,9 +52,9 @@ const Sales = () => {
       );
   
       dispatch(selling({ total: totalprice, user: user.name }));
-      console.log('Stoklar güncellendi ve satış işlemi tamamlandı.');
+      message.success('Stoklar güncellendi ve satış işlemi tamamlandı.');
     } catch (error) {
-      console.error('Stok güncelleme veya satış işlemi hatası:', error);
+      message.error('Stok güncelleme veya satış işlemi hatası:', error);
     }
   };
   

@@ -5,9 +5,9 @@ const initialState = {
   barcode: "",
   productList: [],
   receipt: {
-    user:null,
-    receipts:[],
-    totalSell:null
+    user: null,
+    receipts: [],
+    totalSell: null,
   },
   selectedProducts: [],
   totalReceipts: [],
@@ -17,33 +17,32 @@ export const salesSlice = createSlice({
   name: "sales",
   initialState,
   reducers: {
-    getData : (state , action)=>{
-      state.productList = action.payload
-     },
-    setCheckSell:(state, action) =>{
-      state.totalReceipts = action.payload
+    getData: (state, action) => {
+      state.productList = action.payload;
+    },
+    setCheckSell: (state, action) => {
+      state.totalReceipts = action.payload;
     },
     selling: (state, action) => {
       const { total, user } = action.payload;
       state.total = total;
-      
 
-      state.receipt = 
-        {
-          user: user,
-          receipts: state.selectedProducts,
-          total: state.total,
-        },
-      state.selectedProducts = [];
+      (state.receipt = {
+        user: user,
+        receipts: state.selectedProducts,
+        total: state.total,
+      }),
+        (state.selectedProducts = []);
     },
     setBarcode: (state, action) => {
       state.barcode = action.payload;
-      const findBarcode = state.product.find(
+
+      const findBarcode = state.productList.find(
         (product) => product.barcode === action.payload
       );
       if (findBarcode) {
         const existingProduct = state.selectedProducts.find(
-          (product) => product.id === findBarcode.id
+          (product) => product.$id === findBarcode.$id
         );
         if (existingProduct) {
           existingProduct.quantity += 1;
@@ -53,11 +52,10 @@ export const salesSlice = createSlice({
       }
     },
     selectProduct: (state, action) => {
-    
       const existingProduct = state.selectedProducts.find(
         (product) => product.$id === action.payload.$id
       );
-    
+
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
@@ -66,7 +64,7 @@ export const salesSlice = createSlice({
     },
     deleteProduct: (state, action) => {
       const updatedProducts = state.selectedProducts.filter(
-        (product) => product.id !== action.payload.id
+        (product) => product.$id !== action.payload.$id
       );
 
       return {
@@ -91,7 +89,7 @@ export const salesSlice = createSlice({
     },
     decrease: (state, action) => {
       const existingProduct = state.selectedProducts.find(
-        (product) => product.id === action.payload.id
+        (product) => product.$id === action.payload.$id
       );
 
       if (existingProduct) {
@@ -99,7 +97,7 @@ export const salesSlice = createSlice({
           existingProduct.quantity -= 1;
         } else {
           const updatedProducts = state.selectedProducts.filter(
-            (product) => product.id !== action.payload.id
+            (product) => product.$id !== action.payload.$id
           );
 
           return {
@@ -111,7 +109,6 @@ export const salesSlice = createSlice({
         state.selectedProducts.push({ ...action.payload, quantity: 1 });
       }
     },
-  
   },
 });
 
@@ -125,5 +122,5 @@ export const {
   deleteProduct,
   selectProduct,
   getData,
-  setCheckSell
+  setCheckSell,
 } = salesSlice.actions;
