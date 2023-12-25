@@ -26,13 +26,12 @@ const Sales = () => {
       let canSell = true;
       let remainingStockMessage = "";
 
-
       for (const product of selectedProducts) {
         const newStock = product.stock - product.quantity;
         if (newStock < 0) {
           canSell = false;
           remainingStockMessage = `${product.name} için maksimum satış miktarı: ${product.stock}`;
-          break; 
+          break;
         }
       }
 

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 
 const initialState = {
   total: 0,
@@ -55,7 +56,7 @@ export const salesSlice = createSlice({
       const existingProduct = state.selectedProducts.find(
         (product) => product.$id === action.payload.$id
       );
-
+        
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
@@ -78,13 +79,16 @@ export const salesSlice = createSlice({
 
     increase: (state, action) => {
       const existingProduct = state.selectedProducts.find(
-        (product) => product.id === action.payload.id
+        (product) => product.$id === action.payload.$id
       );
-
-      if (existingProduct) {
-        existingProduct.quantity += 1;
-      } else {
-        state.selectedProducts.push({ ...action.payload, quantity: 1 });
+      if (existingProduct.stock > 1) {
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          state.selectedProducts.push({ ...action.payload, quantity: 1 });
+        }
+      }else{
+        message.warning('ürün stockta yok !')
       }
     },
     decrease: (state, action) => {
