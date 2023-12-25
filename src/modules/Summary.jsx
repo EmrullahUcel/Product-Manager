@@ -6,7 +6,6 @@ import Navbar from "../layouts/Navbar";
 
 const Summary = () => {
   const totalReceipts = useSelector((state) => state.sales.totalReceipts);
-
   const columns = [
     {
       title: "Kullanıcı",
@@ -20,9 +19,15 @@ const Summary = () => {
     },
   ];
 
-  const adminReceipts = totalReceipts.filter((receipt) => receipt.user === "admin");
-  const user1Receipts = totalReceipts.filter((receipt) => receipt.user === "user1");
-  const user2Receipts = totalReceipts.filter((receipt) => receipt.user === "user2");
+  const adminReceipts = totalReceipts.filter(
+    (receipt) => receipt.user === "admin"
+  );
+  const user1Receipts = totalReceipts.filter(
+    (receipt) => receipt.user === "user1"
+  );
+  const user2Receipts = totalReceipts.filter(
+    (receipt) => receipt.user === "user2"
+  );
 
   const dataSource = [
     {
@@ -42,7 +47,10 @@ const Summary = () => {
     },
   ];
 
-  const totalSales = totalReceipts.reduce((total, receipt) => total + receipt.total, 0);
+  const totalSales = totalReceipts.reduce(
+    (total, receipt) => total + receipt.total,
+    0
+  );
 
   return (
     <Navbar>

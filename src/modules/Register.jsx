@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Client, Account, ID } from "appwrite"; // Appwrite modülünü içeri aktar
+import { Client, Account, ID } from "appwrite";
 
 
 const Register = () => {

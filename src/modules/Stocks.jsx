@@ -5,6 +5,7 @@ import Navbar from "../layouts/Navbar";
 
 const Stocks = () => {
   const productList = useSelector((state) => state.sales.productList);
+
   const columns = [
     {
       title: "İsim",
