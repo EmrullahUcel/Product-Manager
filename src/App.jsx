@@ -9,7 +9,7 @@ import { account } from "./db/appwrite";
 import { useDispatch, useSelector } from "react-redux";
 import TotalReceipts from "./modules/TotalReceipts";
 import { databases } from "./db/appwrite";
-import { getData, setCheckSell } from "./redux/SalesSlice";
+import { getData, setCheckSell, setLoading } from "./redux/SalesSlice";
 import Stocks from "./modules/Stocks";
 import Summary from "./modules/Summary";
 import NewPRoduct from "./components/NewPRoduct";
@@ -18,6 +18,7 @@ import { Query } from "appwrite";
 const App = () => {
   const selectedProducts = useSelector((state) => state.sales.selectedProducts);
   const receipt = useSelector((state) => state.sales.receipt);
+
   const totalReceipts = useSelector((state) => state.sales.selectedProducts);
   const dispatch = useDispatch();
 
@@ -30,19 +31,12 @@ const App = () => {
       dispatch(setUser(null));
     }
   };
-  const fetchData = () => {
-    const getProduct = databases.listDocuments(
+  const fetchData = async () => {
+    const getProduct = await databases.listDocuments(
       "658166408e44e25319c9",
       "6581664ba658775f0067"
     );
-    getProduct.then(
-      function (response) {
-        dispatch(getData(response.documents));
-      },
-      function (error) {
-        console.log(error);
-      }
-    );
+    dispatch(getData(getProduct.documents));
   };
   const checkSell = async () => {
     let offset = 0;
@@ -73,13 +67,12 @@ const App = () => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     checkLogin();
-    fetchData();
-  }, []);
-  useEffect(() => {
-    fetchData();
     checkSell();
   }, [selectedProducts, receipt, totalReceipts]);
 

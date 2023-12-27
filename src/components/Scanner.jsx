@@ -4,6 +4,7 @@ import "/src/css/scanner.css";
 import Receipt from "./Receipt";
 import { useDispatch, useSelector } from "react-redux";
 import { setBarcode } from "/src/redux/SalesSlice";
+import { Button } from "antd";
 
 const Scanner = () => {
   const video = useRef();
@@ -54,7 +55,9 @@ const Scanner = () => {
         <canvas ref={canvas} />
         <div>barkod : {barcode}</div>
       </div>
-      <button onClick={openCam}>aç</button>
+      <Button type="primary" danger onClick={openCam}>
+        Barkod okutmak için kamerayı başlat
+      </Button>
       <Receipt />
     </div>
   );

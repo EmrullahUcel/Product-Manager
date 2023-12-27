@@ -64,6 +64,7 @@
   width: 130px;
   height: auto;
   min-height: 170px;
+  max-height: 200px;
 }
 .product-name {
   white-space: nowrap;

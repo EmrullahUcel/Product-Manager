@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
 
 const initialState = {
+  loading: true,
   total: 0,
   barcode: "",
   productList: [],
@@ -18,6 +19,9 @@ export const salesSlice = createSlice({
   name: "sales",
   initialState,
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
     getData: (state, action) => {
       state.productList = action.payload;
     },
@@ -56,7 +60,7 @@ export const salesSlice = createSlice({
       const existingProduct = state.selectedProducts.find(
         (product) => product.$id === action.payload.$id
       );
-        
+
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
@@ -87,8 +91,8 @@ export const salesSlice = createSlice({
         } else {
           state.selectedProducts.push({ ...action.payload, quantity: 1 });
         }
-      }else{
-        message.warning('ürün stockta yok !')
+      } else {
+        message.warning("ürün stockta yok !");
       }
     },
     decrease: (state, action) => {
@@ -127,4 +131,5 @@ export const {
   selectProduct,
   getData,
   setCheckSell,
+  setLoading,
 } = salesSlice.actions;
