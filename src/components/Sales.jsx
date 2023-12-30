@@ -53,12 +53,12 @@ const Sales = () => {
           selectedProducts.map(async (product) => {
             return databases.createDocument(
               "658166408e44e25319c9",
-              "6585d95136c31a10eba1",
+              "658f29d133d275238bc9",
               ID.unique(),
               {
                 user: user.name,
                 total: totalprice,
-                products: selectedProducts,
+                products: selectedProducts.map((item) => item.name),
               }
             );
           })
@@ -75,6 +75,7 @@ const Sales = () => {
       message.error("Stok güncelleme veya satış işlemi hatası:", error);
     }
   };
+  
 
   return (
     <div className="salesWrapper">

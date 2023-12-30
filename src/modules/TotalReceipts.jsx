@@ -7,6 +7,7 @@ import Navbar from "../layouts/Navbar";
 
 const TotalReceipts = () => {
   const totalReceipts = useSelector((state) => state.sales.totalReceipts);
+  
   return (
     <Navbar>
       <div className="receit-container">
@@ -14,7 +15,7 @@ const TotalReceipts = () => {
           <Card hoverable className="productCart receipt-cart" key={uuidv4()}>
             {receipt.products.map((product) => (
               <div key={uuidv4()}>
-                <p>{product.name}</p>
+                <p>{product}</p>
               </div>
             ))}
             <p>Total: {receipt.total} ₺</p>
